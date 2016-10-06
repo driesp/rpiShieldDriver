@@ -3,6 +3,7 @@
 
 int main (int argc, char **argv)
 {
+	bcm2835_set_debug(1);	
 	if(!bcm2835_init())
 	{
 	return 1;
@@ -12,7 +13,6 @@ int main (int argc, char **argv)
 	char command[1];
 	int val[2];
 	int i = 1;
-
 	bcm2835_i2c_begin();
 	bcm2835_i2c_setSlaveAddress(0x29);
 	bcm2835_i2c_set_baudrate(1000);
