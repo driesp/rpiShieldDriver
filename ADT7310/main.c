@@ -21,20 +21,17 @@ int main (int argc, char **argv)
 	buffer[0] = 0x58;
 
 	bcm2835_spi_transfern(buffer,2);
-	printf("id:%02X\n",buffer[1]);
+	//printf("id:%02X\n",buffer[1]);
 	
-	while(1)
-	{
-		buffer[0] = 0x50;					//read the temp
-		bcm2835_spi_transfern(buffer,3);
-		temp = buffer[1]; 
-		temp = temp<<8;
-                temp = temp + ( buffer[2] & 0xF8);
-		temp = temp>>3;
-		temp = temp/16;
-		printf("temp:%d\n",temp);
-		sleep(1);
-	}
+	buffer[0] = 0x50;					//read the temp
+	bcm2835_spi_transfern(buffer,3);
+	temp = buffer[1]; 
+	temp = temp<<8;
+        temp = temp + ( buffer[2] & 0xF8);
+	temp = temp>>3;
+	temp = temp/16;
+	printf("temp:%d\n",temp);
+	
 	
 	bcm2835_spi_end();
 	bcm2835_close();
